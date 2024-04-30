@@ -1,0 +1,26 @@
+{
+  "content_title": {
+    "type": "keyword"
+  },
+  "objective": {
+    "type": "keyword"
+  },
+  "targeting_competencies": {
+    "type": "keyword"
+  },
+  "reference_links": {
+    "type": "keyword"
+  },
+  "request_type": {
+    "type": "keyword"
+  },
+  "preferred_providers": {
+    "type": "keyword"
+  },
+  "types_of_learning": {
+    "type": "keyword"
+  },
+  "isActive": {
+    "type": "keyword"
+  }
+}

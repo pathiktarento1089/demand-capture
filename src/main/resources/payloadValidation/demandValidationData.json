@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "content_title": {
+      "type": "string"
+    },
+    "objective": {
+      "type": "string"
+    },
+    "targeting_competencies": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "reference_links": {
+        "type": "string"
+    },
+    "request_type": {
+      "type": "string"
+    },
+    "preferred_providers": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "demandStatus": {
+        "type": "string"
+      }
+    },
+    "types_of_learning": {
+        "type": "string"
+    }
+  },
+  "required": ["content_title", "objective", "request_type"]
+}
