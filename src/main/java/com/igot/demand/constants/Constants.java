@@ -14,6 +14,7 @@ public class Constants {
     public static final String REDIS_KEY_PREFIX = "demand_";
     public static final String RESULT = "result";
     public static final String FAILED_CONST = "FAILED";
-    public static final String  LAST_UPDATED_DATE= "lastUpdatedDate";
-    public static final String CREATED_DATE = "createdDate";
+    public static final String  LAST_UPDATED_DATE= "updatedOn";
+    public static final String CREATED_DATE = "createdOn";
+    public static final String DEFAULT_STATUS = "unassign";
 }

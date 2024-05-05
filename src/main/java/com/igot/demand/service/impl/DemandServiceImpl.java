@@ -77,7 +77,7 @@ public class DemandServiceImpl implements DemandService {
                 esUtilService.addDocument(Constants.INDEX_NAME, "_doc", id, map);
 
                 cacheService.putCache(jsonNodeEntity.getId(), jsonNode);
-                log.info("entity created");
+                log.info("demand created");
                 response.setMassage("Successfully created");
             response.setResponseCode(org.springframework.http.HttpStatus.valueOf(HttpStatus.SC_OK));
             return response;
@@ -130,6 +130,7 @@ public class DemandServiceImpl implements DemandService {
 
     @Override
     public CustomResponse searchDemand(SearchCriteria searchCriteria) {
+        log.info("DemandServiceImpl::searchEntity:searching the demands");
         String searchString = searchCriteria.getSearchString();
         CustomResponse response = new CustomResponse();
         if (searchString != null && searchString.length() < 2) {
@@ -155,6 +156,7 @@ public class DemandServiceImpl implements DemandService {
 
     @Override
     public String delete(String id) {
+        log.info("DemandServiceImpl::delete:deleting the demand");
         try {
             if (StringUtils.isNotEmpty(id)) {
                 Optional<DemandEntity> entityOptional = demandRepository.findById(id);
@@ -171,10 +173,10 @@ public class DemandServiceImpl implements DemandService {
                         Map<String, Object> map = objectMapper.convertValue(data, Map.class);
                         esUtilService.addDocument(Constants.INDEX_NAME, "_doc", id, map);
                         cacheService.putCache(id,data);
-                        return "Entity details deleted successfully.";
+                        return "demand details deleted successfully.";
                     }else
-                        return "Entity is already inactive.";
-                }else return "Entity not found.";
+                        return "demand is already inactive.";
+                }else return "demand not found.";
             } else return "Invalid entity ID.";
         } catch (Exception e) {
             return "Error deleting Entity with ID " + id + " " + e.getMessage();

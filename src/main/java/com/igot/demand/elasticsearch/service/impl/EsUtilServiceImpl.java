@@ -72,6 +72,7 @@ public class EsUtilServiceImpl implements EsUtilService {
             IndexRequest indexRequest =
                     new IndexRequest(esIndexName, type, id).source(document, XContentType.JSON);
             IndexResponse response = elasticsearchClient.index(indexRequest, RequestOptions.DEFAULT);
+            log.info("Data is inserted in ES");
             return response.status();
         } catch (Exception e) {
             log.error("Issue while Indexing to es: {}", e.getMessage());
@@ -296,25 +297,4 @@ public class EsUtilServiceImpl implements EsUtilService {
                 hit -> bulkRequest.add(new DeleteRequest(esIndexName, Constants.INDEX_TYPE, hit.getId())));
         return elasticsearchClient.bulk(bulkRequest, RequestOptions.DEFAULT);
     }
-
-  /*  private BoolQueryBuilder constructQueryForSpecificUseCases(
-      BoolQueryBuilder boolQueryBuilder, String field, Object value) {
-    if (field.equalsIgnoreCase(Constants.SALARY_RANGE) && value instanceof Map) {
-      Map<String, Object> salaryRange = (Map<String, Object>) value;
-      Object minSalary = salaryRange.get("minSalary");
-      Object maxSalary = salaryRange.get("maxSalary");
-
-      if (minSalary instanceof Number && maxSalary instanceof Number) {
-        BoolQueryBuilder salarySubQuery = QueryBuilders.boolQuery();
-        salarySubQuery.should(
-            QueryBuilders.rangeQuery("minCtcMonthly").from(minSalary).to(maxSalary));
-
-        salarySubQuery.should(
-            QueryBuilders.rangeQuery("maxCtcMonthly").from(minSalary).to(maxSalary));
-
-        boolQueryBuilder.must(salarySubQuery);
-      }
-    }
-    return boolQueryBuilder;
-  }*/
 }
