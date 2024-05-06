@@ -80,6 +80,8 @@ public class DemandServiceImpl implements DemandService {
                 log.info("demand created");
                 response.setMassage("Successfully created");
             response.setResponseCode(org.springframework.http.HttpStatus.valueOf(HttpStatus.SC_OK));
+            map.put(Constants.ID, jsonNodeEntity.getId());
+            response.setResult(map);
             return response;
         } catch (Exception e) {
             throw new RuntimeException(e);
